@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "botmrx/resumo-daily/v1",
+  "title": "ResumoDaily",
+  "description": "Saída estruturada do LLM para uma daily. IDs de participantes, falas e bloqueios referem-se aos IDs enviados na entrada.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "resumo_geral",
+    "participantes",
+    "decisoes",
+    "pendencias",
+    "bloqueios_resolvidos"
+  ],
+  "properties": {
+    "resumo_geral": {
+      "type": "string",
+      "description": "2 a 4 frases sobre a daily como um todo."
+    },
+    "participantes": {
+      "type": "array",
+      "description": "Um item por participante que falou.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "participante_id",
+          "fez",
+          "vai_fazer",
+          "bloqueios"
+        ],
+        "properties": {
+          "participante_id": {
+            "type": "integer"
+          },
+          "fez": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/item"
+            }
+          },
+          "vai_fazer": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/item"
+            }
+          },
+          "bloqueios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/bloqueio"
+            }
+          }
+        }
+      }
+    },
+    "decisoes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "descricao",
+          "responsavel_id",
+          "prazo",
+          "fala_ids"
+        ],
+        "properties": {
+          "descricao": {
+            "type": "string"
+          },
+          "responsavel_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "null se ninguém foi designado."
+          },
+          "prazo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Como foi dito, ex.: 'até sexta'. null se não houve."
+          },
+          "fala_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "bloqueios_resolvidos": {
+      "type": "array",
+      "description": "Bloqueios em aberto (enviados na entrada) que esta daily indica como resolvidos.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "bloqueio_id",
+          "fala_ids"
+        ],
+        "properties": {
+          "bloqueio_id": {
+            "type": "integer"
+          },
+          "fala_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "descricao",
+        "fala_ids"
+      ],
+      "properties": {
+        "descricao": {
+          "type": "string",
+          "description": "Frase curta e objetiva."
+        },
+        "fala_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "IDs das falas que sustentam o item."
+        }
+      }
+    },
+    "bloqueio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "descricao",
+        "bloqueio_existente_id",
+        "fala_ids"
+      ],
+      "properties": {
+        "descricao": {
+          "type": "string"
+        },
+        "bloqueio_existente_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "ID de um bloqueio em aberto que continua; null se for um bloqueio novo."
+        },
+        "fala_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

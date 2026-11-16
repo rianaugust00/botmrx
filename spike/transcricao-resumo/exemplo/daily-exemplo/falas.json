@@ -1,0 +1,37 @@
+{
+  "daily": { "data": "2026-11-13", "iniciadaEm": "2026-11-13T12:30:02.000Z", "time": "Squad Pagamentos (exemplo fictício)" },
+  "participantes": [
+    { "id": 1, "nome": "Diego" },
+    { "id": 2, "nome": "Ana" },
+    { "id": 3, "nome": "Bruno" },
+    { "id": 4, "nome": "Carla" },
+    { "id": 5, "nome": "Eduardo" }
+  ],
+  "falas": [
+    { "id": 1, "participanteId": 1, "inicioMs": 2100, "fimMs": 6900, "texto": "Bom dia, pessoal. Vamos lá, quem quer começar? Ana, pode ir." },
+    { "id": 2, "participanteId": 2, "inicioMs": 8200, "fimMs": 31500, "texto": "Bom dia. Ontem eu terminei a tela de extrato, aquela com o filtro por período, e subi o pul request. Faltou só ajustar o comportamento no celular, quebrava a tabela em tela pequena, mas isso eu corrigi hoje cedo." },
+    { "id": 3, "participanteId": 2, "inicioMs": 32400, "fimMs": 49800, "texto": "Hoje eu vou começar a tela de comprovante do pix. Bruno, eu vou precisar daquele endpoint que retorna os dados do comprovante, ele já está pronto?" },
+    { "id": 4, "participanteId": 3, "inicioMs": 50600, "fimMs": 58200, "texto": "Tá pronto em desenvolvimento, mas o contrato ainda pode mudar um campo. Te mando o swagger depois da daily." },
+    { "id": 5, "participanteId": 2, "inicioMs": 59000, "fimMs": 61500, "texto": "Fechou, obrigada." },
+    { "id": 6, "participanteId": 1, "inicioMs": 63000, "fimMs": 64800, "texto": "Beleza. Bruno, sua vez." },
+    { "id": 7, "participanteId": 3, "inicioMs": 65900, "fimMs": 95400, "texto": "Então, ontem eu fechei o endpoint de comprovante que a Ana falou e comecei a integração com o webhook do banco para confirmação de pagamento. A parte de receber o webhook está feita, falta validar a assinatura." },
+    { "id": 8, "participanteId": 3, "inicioMs": 96300, "fimMs": 121000, "texto": "O problema continua o mesmo de terça: eu ainda não tenho acesso ao ambiente de homologação do banco, então eu não consigo testar o webhook de verdade. Abri o chamado de novo ontem, mas ninguém respondeu ainda." },
+    { "id": 9, "participanteId": 1, "inicioMs": 122000, "fimMs": 134500, "texto": "Esse eu vou cobrar hoje com o pessoal de infra, deixa comigo. Até o fim do dia eu te dou um retorno." },
+    { "id": 10, "participanteId": 3, "inicioMs": 135200, "fimMs": 149000, "texto": "Valeu. Enquanto isso hoje eu vou fazer a validação da assinatura com um mock e escrever os testes unitários do webhook." },
+    { "id": 11, "participanteId": 1, "inicioMs": 150500, "fimMs": 152600, "texto": "Show. Carla?" },
+    { "id": 12, "participanteId": 4, "inicioMs": 153800, "fimMs": 182000, "texto": "Bom dia. Ontem eu testei a tela de extrato da Ana em homologação, achei dois bugs pequenos, já abri no jira: um é a data aparecendo no formato americano e o outro é o total não somando os estornos." },
+    { "id": 13, "participanteId": 2, "inicioMs": 182500, "fimMs": 186000, "texto": "Vi aqui, o da data eu já corrigi, o do estorno eu pego hoje." },
+    { "id": 14, "participanteId": 4, "inicioMs": 187000, "fimMs": 211000, "texto": "Ah, e aquela questão da massa de testes que eu estava sem, o Eduardo gerou ontem à tarde, então isso está resolvido, já consegui rodar a regressão completa de cartão." },
+    { "id": 15, "participanteId": 4, "inicioMs": 212000, "fimMs": 229500, "texto": "Hoje eu vou automatizar o cenário de extrato no Cypress e, se der tempo, começo a escrever os casos de teste do comprovante pix." },
+    { "id": 16, "participanteId": 1, "inicioMs": 231000, "fimMs": 233200, "texto": "Boa. Eduardo." },
+    { "id": 17, "participanteId": 5, "inicioMs": 234500, "fimMs": 262000, "texto": "Bom dia. Ontem além da massa de testes da Carla eu fiquei na migração do banco de transações, a parte de criar as tabelas novas está feita, rodei em desenvolvimento e está ok." },
+    { "id": 18, "participanteId": 5, "inicioMs": 263000, "fimMs": 291000, "texto": "Hoje eu queria rodar o script de migração dos dados antigos, mas para rodar em homologação eu preciso de uma janela, porque ele trava a tabela por uns vinte minutos. Não sei qual o melhor horário." },
+    { "id": 19, "participanteId": 1, "inicioMs": 292000, "fimMs": 309000, "texto": "Pode rodar hoje depois das seis, ninguém usa homologação nesse horário. Avisa no canal antes de começar." },
+    { "id": 20, "participanteId": 5, "inicioMs": 309800, "fimMs": 311500, "texto": "Combinado." },
+    { "id": 21, "participanteId": 1, "inicioMs": 313000, "fimMs": 352000, "texto": "Do meu lado, ontem eu fiquei em reunião com produto sobre o roadmap do próximo trimestre, depois eu passo para vocês. E um combinado: o deploy do extrato fica para quinta-feira, para dar tempo da Carla terminar a regressão e da Ana corrigir o bug de estorno." },
+    { "id": 22, "participanteId": 4, "inicioMs": 352800, "fimMs": 355000, "texto": "Quinta está ótimo para mim." },
+    { "id": 23, "participanteId": 1, "inicioMs": 356000, "fimMs": 371000, "texto": "Outra coisa, alguém precisa atualizar a documentação do webhook no confluence. Não precisa ser hoje, mas até semana que vem seria bom." },
+    { "id": 24, "participanteId": 3, "inicioMs": 371800, "fimMs": 375500, "texto": "Eu posso fazer, mas só depois que validar no ambiente do banco." },
+    { "id": 25, "participanteId": 1, "inicioMs": 376500, "fimMs": 382000, "texto": "Perfeito. Mais alguma coisa? Não? Então boa sexta para todo mundo." }
+  ]
+}

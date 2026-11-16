@@ -1,0 +1,24 @@
+{
+  "name": "botmrx-spike-transcricao-resumo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "transcrever": "node src/cli.js transcrever",
+    "resumir": "node src/cli.js resumir",
+    "processar": "node src/cli.js processar"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "dotenv": "^18.0.10"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

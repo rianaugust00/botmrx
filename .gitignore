@@ -1,0 +1,29 @@
+# Dependências
+node_modules/
+
+# Segredos: tokens, chaves de API, Client Secret. Só os .env.example vão para o git.
+.env
+.env.*
+!.env.example
+
+# Dados pessoais: banco, áudio das dailies e gravações de teste (LGPD)
+dados/
+gravacoes/
+*.db
+*.db-shm
+*.db-wal
+*.ogg
+*.wav
+
+# Saídas do spike de transcrição geradas a partir de gravações reais
+spike/transcricao-resumo/**/falas.json
+spike/transcricao-resumo/**/transcricao.md
+spike/transcricao-resumo/**/resumo*.json
+spike/transcricao-resumo/**/resumo.md
+!spike/transcricao-resumo/exemplo/daily-exemplo/falas.json
+
+# Sistema e editores
+.DS_Store
+*.log
+.vscode/
+.idea/

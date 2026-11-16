@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>BotMRX — Dailies</title>
+    <link rel="icon" href="marca.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
+    <div class="progresso" aria-hidden="true"></div>
+
+    <div class="app corpo">
+      <aside class="barra" aria-label="Navegação">
+        <a class="marca" href="#/dias">
+          <img src="marca.svg" alt="" width="30" height="30" />
+          <span>BotMRX</span>
+        </a>
+
+        <label class="seletor-time">
+          <span class="rotulo">Time</span>
+          <select id="time"></select>
+        </label>
+
+        <nav id="nav" aria-label="Seções">
+          <a href="#/dias" data-secao="dias">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" /></svg>
+            Dias
+          </a>
+          <a href="#/bloqueios" data-secao="bloqueios">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM5.6 5.6l12.8 12.8" /></svg>
+            Bloqueios
+          </a>
+          <a href="#/busca" data-secao="busca">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM20 20l-3.6-3.6" /></svg>
+            Busca
+          </a>
+          <a href="#/perguntas" data-secao="perguntas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z" /></svg>
+            Perguntas
+          </a>
+        </nav>
+
+        <div id="lateral" class="lateral" aria-label="Seleção de dias"></div>
+        <div id="conta" class="conta"></div>
+      </aside>
+
+      <main id="principal" class="principal" tabindex="-1"></main>
+    </div>
+
+    <div id="fundo-gaveta" class="fundo-gaveta" hidden></div>
+    <aside id="gaveta" class="gaveta" hidden aria-label="Transcrição"></aside>
+    <div id="avisos" class="avisos" role="status" aria-live="polite"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
