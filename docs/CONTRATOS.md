@@ -68,6 +68,10 @@ Saída: JSON conforme `contracts/resumo-daily.schema.json`.
 
 ## 4. API HTTP
 
+Na implementação atual as rotas ficam sob o prefixo `/api` (ex.: `GET /api/dailies/42`). Com o
+login ligado, toda rota exige sessão (`401 NAO_AUTENTICADO` sem ela), as consultas precisam informar
+`timeId`, e um time fora do acesso da pessoa responde `403 SEM_ACESSO`.
+
 ### `GET /dailies?timeId=1&datas=2026-11-10,2026-11-12,2026-11-14`
 
 Também aceita `de` / `ate` em vez de `datas`.
@@ -151,6 +155,41 @@ Também aceita `de` / `ate` em vez de `datas`.
     "trecho": "...ainda sem acesso à <mark>homologação</mark>...", "inicioMs": 402000 } ]
 ```
 
+### `POST /perguntas`
+
+Pergunta livre sobre um período; a resposta cita as falas de origem (já conferidas no servidor).
+
+```json
+{ "pergunta": "O que ficou pendente?", "timeId": 1, "de": "2026-11-10", "ate": "2026-11-14", "participanteId": null }
+```
+
+```json
+{
+  "resposta": "Bruno ficou de atualizar a documentação...",
+  "citacoes": [ { "falaId": 1233, "dailyId": 42, "data": "2026-11-14", "participante": { "id": 9, "nome": "Bruno" }, "inicioMs": 402000, "texto": "..." } ],
+  "dailiesConsideradas": 3,
+  "periodoCortado": false,
+  "modelo": "openai/gpt-oss-120b",
+  "versaoPrompt": "perguntas-v1"
+}
+```
+
+### Administração
+
+| Rota | Corpo | Efeito |
+|------|-------|--------|
+| `POST /admin/dailies/{id}/reprocessar` | `{ "etapa": "EXTRAIR" \| "TRANSCREVER" }` | Recoloca a daily na fila (`409` se o áudio já foi apagado) |
+| `PUT /admin/participantes/{id}` | `{ "nome"?, "naoGravar"? }` | Nome de exibição e opt-out |
+
+### Login (`/auth`)
+
+| Rota | Efeito |
+|------|--------|
+| `GET /auth/eu` | `{ "login": true\|false, "usuario": { "id", "nome" } \| null }` |
+| `GET /auth/entrar` | Redireciona para o Discord (OAuth2, escopo `identify`) |
+| `GET /auth/retorno` | Retorno do Discord: cria a sessão (cookie `HttpOnly`) e volta para `/` |
+| `POST /auth/sair` | Encerra a sessão |
+
 ### Erros
 
 ```json
@@ -168,3 +207,4 @@ Também aceita `de` / `ate` em vez de `datas`.
 | `/daily status` | Qualquer membro | Mostra status da daily atual / última |
 | `/daily nao-gravar` | Próprio usuário | Ativa opt-out (persistente) |
 | `/daily gravar` | Próprio usuário | Remove opt-out |
+| `/daily gestor [cargo]` | Quem gerencia o servidor | Define o cargo com acesso ao dashboard do time; sem cargo, volta a só administradores |

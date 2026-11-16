@@ -402,6 +402,10 @@ JOB_RESERVA_MIN=10
 | **2 — Dashboard** | Login, calendário, visão do dia, comparação de dias, visão por pessoa, busca. |
 | **3 — Continuidade** | Bloqueios entre dailies, perguntas livres sobre um período, reprocessamento pelo painel. |
 
+**Situação:** as fases 0 a 3 estão implementadas em Node com SQLite (ver o README e as decisões D8 a
+D10). Pendentes: validação com várias pessoas na call, entrada automática por agenda (`AgendaCron`)
+e o adaptador SQL Server.
+
 ---
 
 ## 13. Estrutura de código sugerida (independente de framework)

@@ -46,3 +46,8 @@ Consequência: o MVP roda sem infraestrutura; migrar para SQL Server é reescrev
 Contexto: a API do Claude é paga e o projeto precisa rodar sem custo na fase de testes.
 Decisão: além do adaptador do Claude, o worker tem um adaptador para APIs no formato OpenAI (`LLM_PROVEDOR=openai`), que serve para Groq, Gemini, OpenRouter ou um modelo local. Prompt, schema e validação de evidências são os mesmos.
 Consequência: modelos que não garantem o JSON Schema passam por uma normalização (`worker/normalizar.js`); a qualidade do resumo depende do modelo escolhido e deve ser conferida. Com provedores gratuitos, confirmar os termos de uso de dados antes de gravar dailies reais.
+
+### D10 — Acesso ao dashboard pelos cargos do Discord
+Contexto: o dashboard mostra o que cada pessoa disse; só gestores devem ver.
+Decisão: login com Discord (escopo `identify`); os cargos são consultados com o token do bot. Entram dono e administradores do servidor e quem tiver o cargo definido em `/daily gestor`. A API filtra tudo por time.
+Consequência: não há cadastro de usuários próprio; perder o cargo no Discord tira o acesso em até 5 minutos. Sem login configurado, o servidor só escuta em 127.0.0.1.

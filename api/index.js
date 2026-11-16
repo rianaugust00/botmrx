@@ -14,7 +14,7 @@ let responder;
 try {
   responder = criarRespondedor({ banco, gerarJson: criarLlm(config.llm), maxCaracteres: config.api.perguntasMaxCaracteres });
 } catch (e) {
-  log(`  (perguntas livres desligadas: ${e.message})`);
+  log(config.llm.provedor === 'desligado' ? '  (perguntas livres desligadas)' : `  (perguntas livres desligadas: ${e.message})`);
 }
 // Login com Discord: ligado quando o .env tem DISCORD_CLIENT_ID e DISCORD_CLIENT_SECRET.
 const { clientId, clientSecret, token: botToken } = config.discord;
